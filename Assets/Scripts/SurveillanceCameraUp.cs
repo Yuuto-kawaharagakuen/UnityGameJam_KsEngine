@@ -35,6 +35,6 @@ public class SurveillanceCameraUp : MonoBehaviour
             direction = 1;
         }
 
-        transform.localRotation = baseRotation * Quaternion.Euler(0f, currentAngle, 0f);
+        transform.localRotation = baseRotation * Quaternion.Euler(currentAngle, 0f, 0f);
     }
 }
