@@ -2971,8 +2971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281a34dc3e9baed4da3f1bd138e75c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 0.35
-  crouchSpeedMultiplier: 0.4
+  moveSpeed: 2
+  crouchSpeedMultiplier: 0.3
   rotateSpeed: 8
   gravity: -9.81
   cameraTransform: {fileID: 725336805}
