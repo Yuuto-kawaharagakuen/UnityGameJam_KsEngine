@@ -1,0 +1,47 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+// テスト用: マウス移動でもカメラ操作できる(コントローラーが無くても動作確認できるように)
+public class ThirdPersonCamera : MonoBehaviour
+{
+    [Header("追従対象")]
+    public Transform target; // プレイヤーのTransform
+
+    [Header("カメラ設定")]
+    public Vector3 offset = new Vector3(0f, 1.6f, 0f); // 注視点の高さオフセット
+    public float distance = 4f;
+    public float sensitivity = 120f;
+    public float minPitch = -20f;
+    public float maxPitch = 60f;
+    [Tooltip("開始時のカメラの水平方向の向き(度数)。180にすると反対向きから始まる")]
+    public float initialYaw = 0f;
+    private float yaw;
+    private float pitch = 15f;
+
+    void Start()
+    {
+        yaw = initialYaw;
+    }
+
+    void LateUpdate()
+    {
+        if (target == null) return;
+
+        var gamepad = Gamepad.current;
+
+        if (gamepad != null && gamepad.rightStick.ReadValue().sqrMagnitude > 0.01f)
+        {
+            Vector2 look = gamepad.rightStick.ReadValue();
+            yaw += look.x * sensitivity * Time.deltaTime;
+            pitch -= look.y * sensitivity * Time.deltaTime;
+            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+        }
+
+        Quaternion rot = Quaternion.Euler(pitch, yaw, 0f);
+        Vector3 focusPoint = target.position + offset;
+        Vector3 desiredPos = focusPoint - rot * Vector3.forward * distance;
+
+        transform.position = desiredPos;
+        transform.LookAt(focusPoint);
+    }
+}
