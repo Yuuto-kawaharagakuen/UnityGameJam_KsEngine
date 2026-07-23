@@ -904,6 +904,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8cf8c8ebdca9c56499936ab9e83f865e, type: 2}
+    - target: {fileID: 5866666021909216657, guid: eb00a6954a2e0e64594a1a43084512d7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5749,9 +5753,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 4
-  crouchSpeedMultiplier: 0.5
   rotateSpeed: 10
   gravity: -9.81
+  slideSpeedMultiplier: 1.5
+  slideTurnDegreesPerFrame: 2
+  slideHeight: 0.9
+  slideCenterY: 0.45
+  heightLerpSpeed: 2
+  standReturnLerpSpeed: 8
+  collisionRestoreAtSlideMidProgress: 1
   cameraTransform: {fileID: 725336805}
 --- !u!143 &540064229
 CharacterController:
@@ -7273,9 +7283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonCamera
   target: {fileID: 540064227}
   offset: {x: 0, y: 1.6, z: 0}
-  distance: 4
+  distance: 2.8
   sensitivity: 120
-  mouseSensitivity: 0.15
   minPitch: -20
   maxPitch: 60
   initialYaw: 180
