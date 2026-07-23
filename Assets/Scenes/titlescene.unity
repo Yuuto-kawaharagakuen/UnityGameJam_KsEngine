@@ -791,9 +791,9 @@ MonoBehaviour:
   offset: {x: 0, y: 1.6, z: 0}
   distance: 4
   sensitivity: 120
-  mouseSensitivity: 0.15
   minPitch: -20
   maxPitch: 60
+  initialYaw: 0
 --- !u!114 &568570702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1659,6 +1659,7 @@ GameObject:
   - component: {fileID: 1329888244}
   - component: {fileID: 1329888243}
   - component: {fileID: 1329888242}
+  - component: {fileID: 1329888245}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1705,7 +1706,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1725,7 +1726,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1329888243}
   m_OnClick:
     m_PersistentCalls:
@@ -1780,6 +1781,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329888240}
   m_CullTransparentMesh: 1
+--- !u!114 &1329888245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329888240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bab9ea7ac43b884ca8019e3b346a353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadButtonTrigger
 --- !u!1 &1364316910
 GameObject:
   m_ObjectHideFlags: 0
