@@ -34,12 +34,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var gamepad = Gamepad.current;
-        var keyboard = Keyboard.current;
 
         // --- しゃがみ/隠れ (ゲームパッド: Aボタン / キーボード: Space、どちらもトグル) ---
         bool hideKeyPressed =
-            (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
-            (keyboard != null && keyboard.spaceKey.wasPressedThisFrame);
+            (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame);
 
         if (hideKeyPressed)
         {
@@ -49,13 +47,9 @@ public class PlayerController : MonoBehaviour
         // --- 移動 (ゲームパッド: 左スティック / キーボード: WASD・矢印キー、カメラの向き基準) ---
         Vector2 input = gamepad != null ? gamepad.leftStick.ReadValue() : Vector2.zero;
 
-        if (keyboard != null && input.sqrMagnitude < 0.01f)
+        if (input.sqrMagnitude < 0.01f)
         {
             float x = 0f, y = 0f;
-            if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) x -= 1f;
-            if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) x += 1f;
-            if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) y -= 1f;
-            if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) y += 1f;
             input = new Vector2(x, y).normalized;
         }
 
