@@ -13,9 +13,15 @@ public class ThirdPersonCamera : MonoBehaviour
     public float sensitivity = 120f;
     public float minPitch = -20f;
     public float maxPitch = 60f;
-
+    [Tooltip("開始時のカメラの水平方向の向き(度数)。180にすると反対向きから始まる")]
+    public float initialYaw = 0f;
     private float yaw;
     private float pitch = 15f;
+
+    void Start()
+    {
+        yaw = initialYaw;
+    }
 
     void LateUpdate()
     {

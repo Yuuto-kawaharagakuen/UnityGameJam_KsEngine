@@ -12,6 +12,8 @@ public class Conecamera : MonoBehaviour
     public LayerMask groundMask;
     [Tooltip("床が見つからなかった場合に使う、頂点からの距離")]
     public float fallbackDistance = 10f;
+    [Tooltip("光が届く深さの上限。これより下(穴の底など)には光が届かないようにする")]
+    public float maxDropHeight = 3f;
 
     [Header("円錐の形状")]
     [Tooltip("床にできる円の半径")]
@@ -45,6 +47,24 @@ public class Conecamera : MonoBehaviour
         else
         {
             groundPoint = transform.position + transform.forward * fallbackDistance;
+        }
+
+        // 穴などで床が深すぎる場合、maxDropHeightの高さで光を打ち切る
+        float drop = transform.position.y - groundPoint.y;
+        if (drop > maxDropHeight)
+        {
+            float clampedPlaneY = transform.position.y - maxDropHeight;
+            Vector3 dir = transform.forward;
+
+            // 下向き成分がほぼ無い(水平に近い)場合は打ち切り不要
+            if (Mathf.Abs(dir.y) > 0.0001f)
+            {
+                float t = (transform.position.y - clampedPlaneY) / -dir.y;
+                if (t > 0f)
+                {
+                    groundPoint = transform.position + dir * t;
+                }
+            }
         }
 
         GroundPoint = groundPoint;
