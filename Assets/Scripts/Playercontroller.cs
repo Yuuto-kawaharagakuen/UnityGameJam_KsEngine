@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private Vector3 slideDirection;
 
+
+
     // 通常時の高さ・中心(Awakeで記憶しておき、スライド後に元へ戻す)
     private float standHeight;
     private Vector3 standCenter;

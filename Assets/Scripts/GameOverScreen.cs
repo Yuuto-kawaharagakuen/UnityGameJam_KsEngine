@@ -1,14 +1,18 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class GameOverScreen : MonoBehaviour
 {
     public CanvasGroup blackPanel;
     public CanvasGroup gameOverText;
 
+    //フェードイン用のオブジェクト
     public CanvasGroup retryButton;
     public CanvasGroup titleButton;
 
+    //選択用のオブジェクト
+    public GameObject retryButtonObject;
+    public GameObject titleButtonObject;
     IEnumerator Fade(CanvasGroup cg, float start, float end, float duration)
     {
         float time = 0f;
@@ -68,6 +72,9 @@ public class GameOverScreen : MonoBehaviour
         retryButton.interactable = true;
         retryButton.blocksRaycasts = true;
 
+        EventSystem.current.SetSelectedGameObject(retryButtonObject);
+
+
         yield return new WaitForSeconds(0.3f);
 
         // Title表示
@@ -76,5 +83,7 @@ public class GameOverScreen : MonoBehaviour
 
         titleButton.interactable = true;
         titleButton.blocksRaycasts = true;
+
+        EventSystem.current.SetSelectedGameObject(titleButtonObject);
     }
 }
