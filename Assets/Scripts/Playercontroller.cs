@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ThirdPersonCameraが付いているTransform。移動方向の基準にする")]
     public Transform cameraTransform;
 
+    private bool canMove = true;
+
     private CharacterController controller;
     private Animator animator; // あれば自動取得。なくてもエラーにならない
     private float verticalVelocity;
@@ -65,6 +68,13 @@ public class PlayerController : MonoBehaviour
         // 当たり判定を「低い姿勢」として維持すべきかどうか(移動ロックとは別の判定)
         bool isLowProfile = false;
 
+        if (!canMove)
+        {
+            // 見た目をIdleに戻したい場合(任意)
+            if (animator != null)
+                animator.SetFloat("Speed", 0f);
+            return; // 入力・移動・スライド処理を全てスキップ
+        }
         if (animator != null)
         {
             var state = animator.GetCurrentAnimatorStateInfo(0);
@@ -149,5 +159,9 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat("Speed", moveInput.magnitude);
         }
+    }
+    public void SetMovable(bool value)
+    {
+        canMove = value;
     }
 }

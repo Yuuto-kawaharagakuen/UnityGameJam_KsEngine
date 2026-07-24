@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
         {
             isGameOver = true;
 
+            GetComponent<PlayerController>()?.SetMovable(false);
             FindObjectOfType<GameOverScreen>()
                 .StartGameOver();
 
