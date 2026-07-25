@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AutoDoor : MonoBehaviour
+public class AutoDoorZ : MonoBehaviour
 {
     [Header("検知設定")]
     [Tooltip("プレイヤーがこの距離以内に近づいたらドアが開く")]
