@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClearManager : MonoBehaviour
 {
     [Tooltip("クリア時に戻るシーン名。Build Settingsに追加してあるシーン名を正確に入力すること")]
-    public static string titleSceneName = "titlescene";
+    public static string ClearSceneName = "GameClear";
 
     private static bool isCleared;
 
@@ -25,7 +25,6 @@ public class ClearManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(elapsedTime % 60f);
         Debug.Log($"クリア! タイム: {minutes:00}:{seconds:00}");
 
-        // 今はシンプルにタイトルへ戻す(後でクリア専用UIに差し替え可能)
-        SceneManager.LoadScene(titleSceneName);
+        SceneManager.LoadScene(ClearSceneName);
     }
 }

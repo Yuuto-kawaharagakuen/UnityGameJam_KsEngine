@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     [Tooltip("ゲームオーバー時に戻るシーン名。Build Settingsに追加してあるシーン名を正確に入力すること")]
-    public static string titleSceneName = "titlescene";
+    public static string GameClearScene = "GameClearscene";
 
     private static bool isGameOver;
 
@@ -24,6 +24,6 @@ public class GameOverManager : MonoBehaviour
 
         // タイトルシーンがBuild Settingsに登録されていればロード
         // (まだシーンが無い/名前が違う場合はここでエラーが出るので、その時は名前を実際のシーン名に合わせて直すこと)
-        SceneManager.LoadScene(titleSceneName);
+        SceneManager.LoadScene(GameClearScene);
     }
 }
