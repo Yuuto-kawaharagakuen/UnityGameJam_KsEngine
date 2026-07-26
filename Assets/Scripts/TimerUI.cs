@@ -23,6 +23,12 @@ public class TimerUI : MonoBehaviour
 
     void Start()
     {
+        // タイトルで選んだ難易度があれば、その値でtimeLimitを上書きする
+        if (GameSettings.Instance != null)
+        {
+            timeLimit = GameSettings.Instance.TimeLimit;
+        }
+
         remaining = timeLimit;
         UpdateDisplay();
     }
