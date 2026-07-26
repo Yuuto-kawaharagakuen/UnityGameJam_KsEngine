@@ -33,6 +33,10 @@ public class Conecamera : MonoBehaviour
         mesh.name = "DetectionCone";
         mesh.MarkDynamic();
         GetComponent<MeshFilter>().sharedMesh = mesh;
+        // CameraDetectionZoneが最初のUpdateで参照しても安全なように、
+        // GroundPointの初期値をカメラ自身の位置にしておく(原点(0,0,0)のままだと
+        // スタート地点が原点付近の場合に誤検知してしまうため)
+        GroundPoint = transform.position;
     }
 
     void LateUpdate()

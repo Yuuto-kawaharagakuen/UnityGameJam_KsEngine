@@ -9,6 +9,15 @@ public class PlayerManager : MonoBehaviour
 
     private bool isGameOver = false;
 
+    void Start()
+    {
+        if (GameSettings.Instance != null)
+        {
+            gameOverTime = GameSettings.Instance.GameOverTime;
+            Debug.Log($"[PlayerManager] GameSettings.Instance ID: {GameSettings.Instance.GetInstanceID()}, 難易度: {GameSettings.Instance.currentDifficulty}, gameOverTime: {gameOverTime}");
+        }
+    }
+
     public void AddDetectionTime(float amount)
     {
         if (isGameOver) return;

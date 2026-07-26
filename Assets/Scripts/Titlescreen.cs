@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems; // 追加
 
 public class TitleSequence : MonoBehaviour
 {
@@ -36,27 +37,28 @@ public class TitleSequence : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        // 黒画面を消す
         yield return StartCoroutine(
             Fade(blackPanel, 1f, 0f, 2f));
 
-        // Unity表示
         yield return StartCoroutine(
             Fade(unityLogo, 0f, 1f, 1.5f));
 
         yield return new WaitForSeconds(1f);
 
-        // Unity消す
         yield return StartCoroutine(
             Fade(unityLogo, 1f, 0f, 1.5f));
 
-        // タイトル表示
         yield return StartCoroutine(
             Fade(titleText, 0f, 1f, 2f));
 
         yield return new WaitForSeconds(0.5f);
 
         startButton.SetActive(true);
+
+        // ゲームパッドで即座にAボタンを押せるよう、選択状態をセットする
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(startButton);
+
         Debug.Log("シーケンス終了");
     }
 }
