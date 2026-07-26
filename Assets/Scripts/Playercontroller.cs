@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ThirdPersonCameraが付いているTransform。移動方向の基準にする")]
     public Transform cameraTransform;
 
+    // 外部(監視カメラなど)から読み取れる、現在スライド中かどうか
+    public bool IsSliding { get; private set; }
+
     private bool canMove = true;
 
     private CharacterController controller;
@@ -64,7 +67,7 @@ public class PlayerController : MonoBehaviour
         if (gamepad == null) return; // ゲームパッドが無ければ何もしない
 
         // --- 今、スライドアニメーション再生中かどうか(Animatorのステート名で判定、移動ロック用) ---
-        bool isSliding = false;
+        IsSliding = false;
         // 当たり判定を「低い姿勢」として維持すべきかどうか(移動ロックとは別の判定)
         bool isLowProfile = false;
 
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             var state = animator.GetCurrentAnimatorStateInfo(0);
-            isSliding = state.IsName("Slide_Start") || state.IsName("Slide_Mid") || state.IsName("Slide_End");
+            IsSliding = state.IsName("Slide_Start") || state.IsName("Slide_Mid") || state.IsName("Slide_End");
 
             if (state.IsName("Slide_Start"))
             {
@@ -110,7 +113,7 @@ public class PlayerController : MonoBehaviour
         Vector3 camRight = cameraTransform.right; camRight.y = 0f; camRight.Normalize();
 
         // --- スライド開始 (Aボタン、移動中のみ、スライド中は多重発動しない) ---
-        if (!isSliding && gamepad.buttonSouth.wasPressedThisFrame && moveInput.sqrMagnitude > 0.01f)
+        if (!IsSliding && gamepad.buttonSouth.wasPressedThisFrame && moveInput.sqrMagnitude > 0.01f)
         {
             slideDirection = (camForward * moveInput.z + camRight * moveInput.x).normalized;
 
@@ -118,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Slide");
         }
 
-        if (isSliding)
+        if (IsSliding)
         {
             // スティックが倒れていれば、その方向へ毎フレーム少しずつ向きを寄せる
             if (moveInput.sqrMagnitude > 0.01f)
