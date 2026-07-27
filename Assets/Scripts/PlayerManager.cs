@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class PlayerManager : MonoBehaviour
     [Tooltip("累計何秒検知されたらゲームオーバーか")]
     public float gameOverTime = 2f;
 
+    [Header("UI表示")]
+    [Tooltip("検知度合いを表示するゲージ(Slider)")]
+    public Slider detectionGauge;
+
     private bool isGameOver = false;
 
     void Start()
@@ -14,8 +19,9 @@ public class PlayerManager : MonoBehaviour
         if (GameSettings.Instance != null)
         {
             gameOverTime = GameSettings.Instance.GameOverTime;
-            Debug.Log($"[PlayerManager] GameSettings.Instance ID: {GameSettings.Instance.GetInstanceID()}, 難易度: {GameSettings.Instance.currentDifficulty}, gameOverTime: {gameOverTime}");
         }
+
+        UpdateGauge();
     }
 
     public void AddDetectionTime(float amount)
@@ -24,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
         detectedTime += amount;
 
-        Debug.Log("累計検知時間：" + detectedTime);
+        UpdateGauge();
 
         if (detectedTime >= gameOverTime)
         {
@@ -36,5 +42,13 @@ public class PlayerManager : MonoBehaviour
 
             Debug.Log("GAME OVER");
         }
+    }
+
+    private void UpdateGauge()
+    {
+        if (detectionGauge == null) return;
+
+        // 0〜1の割合でゲージに反映
+        detectionGauge.value = Mathf.Clamp01(detectedTime / gameOverTime);
     }
 }
