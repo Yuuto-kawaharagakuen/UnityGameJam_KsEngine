@@ -12,6 +12,7 @@ public class GameClearScreen : MonoBehaviour
     public CanvasGroup ClearTime;
     public CanvasGroup retryButton;
     public CanvasGroup titleButton;
+    public CanvasGroup GameClearPanel;
 
     //選択用のオブジェクト
     public GameObject retryButtonObject;
@@ -65,6 +66,7 @@ public class GameClearScreen : MonoBehaviour
         ClearTimeText.alpha = 0f;
         ClearTime.alpha = 0f;
         gameClearText.alpha = 0f;
+        GameClearPanel.alpha = 0f;
         retryButton.alpha = 0f;
         titleButton.alpha = 0f;
 
@@ -89,6 +91,8 @@ public class GameClearScreen : MonoBehaviour
         yield return StartCoroutine(
             Fade(gameClearText, 0f, 1f, 2f));
 
+        yield return StartCoroutine(
+            Fade(GameClearPanel, 0f, 1f, 2f));
         yield return new WaitForSeconds(1f);
 
 
