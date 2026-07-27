@@ -7,7 +7,7 @@ public class TitleSequence : MonoBehaviour
     public CanvasGroup blackPanel;
     public CanvasGroup unityLogo;
     public CanvasGroup titleText;
-
+    public CanvasGroup TeamName;
     public GameObject startButton;
 
     IEnumerator Fade(CanvasGroup cg, float start, float end, float duration)
@@ -31,6 +31,7 @@ public class TitleSequence : MonoBehaviour
         blackPanel.alpha = 1f;
 
         unityLogo.alpha = 0f;
+        TeamName.alpha = 0f;
         titleText.alpha = 0f;
 
         startButton.SetActive(false);
@@ -39,14 +40,22 @@ public class TitleSequence : MonoBehaviour
 
         yield return StartCoroutine(
             Fade(blackPanel, 1f, 0f, 2f));
-
+        //フェードイン
         yield return StartCoroutine(
             Fade(unityLogo, 0f, 1f, 1.5f));
-
+        //フェードアウト
         yield return new WaitForSeconds(1f);
 
         yield return StartCoroutine(
             Fade(unityLogo, 1f, 0f, 1.5f));
+        //フェードイン
+        yield return StartCoroutine(
+          Fade(TeamName, 0f, 1f, 1.5f));
+        //フェードアウト
+        yield return new WaitForSeconds(1f);
+        
+        yield return StartCoroutine(
+            Fade(TeamName, 1f, 0f, 1.5f));
 
         yield return StartCoroutine(
             Fade(titleText, 0f, 1f, 2f));
