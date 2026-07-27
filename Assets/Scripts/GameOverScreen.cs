@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class GameOverScreen : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip gameOverSE;
     public CanvasGroup blackPanel;
     public CanvasGroup gameOverText;
 
@@ -32,8 +34,19 @@ public class GameOverScreen : MonoBehaviour
         cg.alpha = end;
     }
 
+    public void PlayGameOverBGM()
+    {
+        audioSource.Play();
+    }
     public void StartGameOver()
     {
+        GameObject.Find("InGameBGM")
+            .GetComponent<AudioSource>()
+            .Stop();
+        audioSource.PlayOneShot(gameOverSE);
+
+        Invoke(nameof(PlayGameOverBGM), 2f);
+
         StartCoroutine(GameOverRoutine());
     }
 
