@@ -7,7 +7,7 @@ public class ClearManager : MonoBehaviour
 {
     [Tooltip("クリア時に戻るシーン名。Build Settingsに追加してあるシーン名を正確に入力すること")]
     public static string ClearSceneName = "GameClear";
-
+    public static float LastClearTime;
     private static bool isCleared;
 
     void OnEnable()
@@ -21,9 +21,10 @@ public class ClearManager : MonoBehaviour
         if (isCleared) return; // 二重発火防止
         isCleared = true;
 
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        Debug.Log($"クリア! タイム: {minutes:00}:{seconds:00}");
+        LastClearTime = elapsedTime;
+        //int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+        //float seconds = Mathf.FloorToInt(elapsedTime % 60f);
+        //Debug.Log($"クリア! タイム: {minutes:00}:{seconds:00}");
 
         SceneManager.LoadScene(ClearSceneName);
     }
