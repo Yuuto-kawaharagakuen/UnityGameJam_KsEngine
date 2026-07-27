@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     public float gameOverTime = 2f;
 
     [Header("UI表示")]
-    [Tooltip("検知度合いを表示するゲージ(Slider)")]
     public Slider detectionGauge;
 
     private bool isGameOver = false;
@@ -37,6 +36,10 @@ public class PlayerManager : MonoBehaviour
             isGameOver = true;
 
             GetComponent<PlayerController>()?.SetMovable(false);
+
+            // 制限時間タイマーも止める(ゲームオーバー後に時間切れが二重発火するのを防ぐ)
+            FindObjectOfType<TimerUI>()?.StopTimer();
+
             FindObjectOfType<GameOverScreen>()
                 .StartGameOver();
 
@@ -48,7 +51,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (detectionGauge == null) return;
 
-        // 0〜1の割合でゲージに反映
         detectionGauge.value = Mathf.Clamp01(detectedTime / gameOverTime);
     }
 }

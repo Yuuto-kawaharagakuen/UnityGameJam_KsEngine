@@ -1822,7 +1822,7 @@ MonoBehaviour:
   currentDifficulty: 0
   normalTimeLimit: 80
   hardTimeLimit: 40
-  normalGameOverTime: 3
+  normalGameOverTime: 5
   hardGameOverTime: 1.5
 --- !u!4 &1097902019
 Transform:
