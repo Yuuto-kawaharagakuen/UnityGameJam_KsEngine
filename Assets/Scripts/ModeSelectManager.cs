@@ -21,7 +21,7 @@ public class ModeSelectManager : MonoBehaviour
         selected = true;
 
         GameSettings.Instance.SetDifficulty(GameSettings.Difficulty.Normal);
-        SceneManager.LoadScene("Test_Map");
+        SceneManager.LoadScene("InGame");
     }
 
     public void SelectHard()
@@ -30,6 +30,6 @@ public class ModeSelectManager : MonoBehaviour
         selected = true;
 
         GameSettings.Instance.SetDifficulty(GameSettings.Difficulty.Hard);
-        SceneManager.LoadScene("Test_Map");
+        SceneManager.LoadScene("InGame");
     }
 }
