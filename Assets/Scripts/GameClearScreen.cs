@@ -125,6 +125,6 @@ public class GameClearScreen : MonoBehaviour
         titleButton.interactable = true;
         titleButton.blocksRaycasts = true;
 
-        EventSystem.current.SetSelectedGameObject(titleButtonObject);
+        //EventSystem.current.SetSelectedGameObject(titleButtonObject);
     }
 }
