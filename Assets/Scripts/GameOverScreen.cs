@@ -41,8 +41,9 @@ public class GameOverScreen : MonoBehaviour
     public void StartGameOver()
     {
         GameObject.Find("InGameBGM")
-            .GetComponent<AudioSource>()
-            .Stop();
+            .GetComponent<BGMPlayer>()
+            .StopBGM();
+
         audioSource.PlayOneShot(gameOverSE);
 
         Invoke(nameof(PlayGameOverBGM), 2f);
