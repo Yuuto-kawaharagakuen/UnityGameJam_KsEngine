@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 16790}
   - component: {fileID: 16789}
   - component: {fileID: 16788}
+  - component: {fileID: 16792}
   m_Layer: 5
   m_Name: retryButton
   m_TagString: Untagged
@@ -265,6 +266,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16786}
   m_CullTransparentMesh: 1
+--- !u!114 &16792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bab9ea7ac43b884ca8019e3b346a353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadButtonTrigger
 --- !u!1001 &6648772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3521,9 +3534,9 @@ RectTransform:
   - {fileID: 1851677143}
   m_Father: {fileID: 642926861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 806, y: 284}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -150, y: 284}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163763527
@@ -7945,7 +7958,7 @@ RectTransform:
   m_GameObject: {fileID: 321050139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98821, y: 0.98821, z: 0.98821}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 306710985}
@@ -7954,7 +7967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 492.4384}
+  m_AnchoredPosition: {x: 3, y: 450}
   m_SizeDelta: {x: 179.7368, y: 68.7284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321050141
@@ -43669,6 +43682,7 @@ GameObject:
   - component: {fileID: 1815185319}
   - component: {fileID: 1815185318}
   - component: {fileID: 1815185317}
+  - component: {fileID: 1815185321}
   m_Layer: 5
   m_Name: titleButton
   m_TagString: Untagged
@@ -43802,6 +43816,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815185315}
   m_CullTransparentMesh: 1
+--- !u!114 &1815185321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815185315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bab9ea7ac43b884ca8019e3b346a353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadButtonTrigger
 --- !u!1001 &1820049931
 PrefabInstance:
   m_ObjectHideFlags: 0
